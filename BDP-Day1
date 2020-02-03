@@ -1,0 +1,21 @@
+import numpy as np
+l_score = np.loadtxt('score.txt') # 텍스트파일 받기
+score = l_score[:,1:] # 점수 부분만 슬라이싱
+# 전체 평균 및 가장 높은 학생과 낮은 학생
+all_mean = np.sum(score, axis =1) / 5
+print('전체 평균 : ', all_mean)
+print('전체 평균 가장 높은 학생 : ', np.argmax(all_mean)+1)
+print('전체 평균 가장 낮은 학생 : ', np.argmin(all_mean)+1)
+# 3과목 평균 및 가장 높은 학생과 낮은 학생
+score_kem = score[:,:3]
+kem_mean = np.sum(score_kem, axis=1) / 3
+print('국영수 평균 : ', kem_mean)
+print('국영수 평균 가장 높은 학생 : ', np.argmax(kem_mean)+1)
+print('국영수 평균 가장 낮은 학생 : ', np.argmin(kem_mean)+1
+# 3과목 가중치 및 가중치 
+ga_ar = np.array([2,2,2,1,1])
+ga_score = score @ ga_ar
+ga_mean = ga_score / np.sum(ga_ar)
+print('가중치 평균 : ', ga_mean)
+print('가중치 평균 가장 높은 학생 : ', np.argmax(ga_mean)+1)
+print('가중치 평균 가장 낮은 학생 : ', np.argmin(ga_mean)+1)
